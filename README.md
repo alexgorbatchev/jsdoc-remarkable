@@ -9,7 +9,7 @@ Plugin for [Remarkable Markdown parser](https://github.com/jonschlinkert/remarka
 ## Installation
 
 ```
-npm instal --save-dev jsdoc-remarkable
+npm install --save-dev jsdoc-remarkable
 ```
 
 ## Usage
