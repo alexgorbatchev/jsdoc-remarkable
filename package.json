@@ -1,0 +1,46 @@
+{
+  "name": "jsdoc-remarkable",
+  "version": "0.0.0",
+  "description": "Plugin for the Remarkable Markdown parser that enables basic JSDoc",
+  "main": "lib/jsdoc-remarkable.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "prepublish": "babel *.js --out-dir ./lib --source-maps",
+    "test": "mocha --require babel-register tests/**/*-test.js",
+    "dev": "run-when-changed --watch 'tests/**/*-test.js' --exec 'mocha --require babel-register %s' --watch '*.js' --exec 'babel %s --out-dir ./lib --source-maps'"
+  },
+  "keywords": [
+    "jsdoc",
+    "parse",
+    "parser",
+    "plugin",
+    "markdown"
+  ],
+  "author": {
+    "name": "Alex Gorbatchev",
+    "url": "https://github.com/alexgorbatchev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexgorbatchev/jsdoc-remarkable"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-core": "^6.7.4",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "run-when-changed": "^1.2.0",
+    "remarkable": "^1.6.2",
+    "unindenter": "^4.0.0"
+  },
+  "dependencies": {
+    "lodash.merge": "^4.5.1",
+    "lodash.template": "^4.3.0",
+    "xregexp": "^3.1.1"
+  }
+}
