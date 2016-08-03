@@ -25,7 +25,7 @@ markdown.render(...);
 
 ## JSDoc Support
 
-This plugin is **not meant** to be a comprehansive implementation of JSDoc. The goal is to provide a small subset of functionality to facilitate beautifully rendered documentation. Majority of other things could be achieved with Markdown.
+This plugin is **not meant** to be a comprehensive implementation of JSDoc. The goal is to provide a small subset of functionality to facilitate beautifully rendered documentation. Majority of other things could be achieved with Markdown.
 
 The following constructs are supported:
 
