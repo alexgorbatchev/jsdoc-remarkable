@@ -86,6 +86,8 @@ export default function jsdocRemarkable(templates = defaultTemplates) {
     markdown.renderer.rules.paragraph_open = function (tokens, index) {
       let hasJSDocTokens = false;
 
+      // Looks for a jsdoc token inside a paragraph and if found, prevents the <p>
+      // tag from being rendered out.
       for (let i = index + 1; i < tokens.length; i++) {
         const children = tokens[i].children || [];
         hasJSDocTokens = hasJSDocTokens || children.find(token => token.type === 'jsdoc');

@@ -1,15 +1,15 @@
 import template from 'lodash.template';
 
 const namedThingWithParams = name => `
-  <div class="${name}">
-    <span class="${name}-name"><%= name %></span>
+  <div class="jsdoc-${name}">
+    <span class="jsdoc-${name}-name"><%= name %></span>
     <% if (params.length) { %>
-      <span class="${name}-params">
-        <span class="${name}-brace ${name}-brace-left">(</span>
+      <span class="jsdoc-${name}-params">
+        <span class="jsdoc-${name}-brace jsdoc-${name}-brace-left">(</span>
         <% for (const param of params) { %>
-          <code class="${name}-param ${name}-param-<%= param.name %>"><%= param.name %></code>
+          <code class="jsdoc-${name}-param jsdoc-${name}-param-<%= param.name %>"><%= param.name %></code>
         <% } %>
-        <span class="${name}-brace ${name}-brace-right">)</span>
+        <span class="jsdoc-${name}-brace jsdoc-${name}-brace-right">)</span>
       </span>
     <% } %>
   </div>
@@ -20,34 +20,34 @@ export default {
   action: template(namedThingWithParams('action')),
 
   param: template(`
-    <div class="param param-arg">
+    <div class="jsdoc-param jsdoc-param-arg">
       <% if (types.length) { %>
-        <span class="param-types">
+        <span class="jsdoc-param-types">
           <% for (const type of types) { %>
-            <code class="param-type param-type-<%= type.toLowerCase() %>"><%= type %></code>
+            <code class="jsdoc-param-type jsdoc-param-type-<%= type.toLowerCase() %>"><%= type %></code>
           <% } %>
         </span>
       <% } %>
-      <code class="param-name"><%= name %></code>
+      <code class="jsdoc-param-name"><%= name %></code>
       <% if (description) { %>
-        <span class="param-description"><%= description %></span>
+        <span class="jsdoc-param-description"><%= description %></span>
       <% } %>
     </div>
   `),
 
   method: template(`
-    <div class="method">
-      <span class="method-name"><%= name %></span>
-      <span class="method-params">
-        <span class="method-brace method-brace-left">(</span>
+    <div class="jsdoc-method">
+      <span class="jsdoc-method-name"><%= name %></span>
+      <span class="jsdoc-method-params">
+        <span class="jsdoc-method-brace jsdoc-method-brace-left">(</span>
           <% for (const param of params) { %>
-            <code class="method-param method-param-<%= param.name %>"><%= param.name %></code>
+            <code class="jsdoc-method-param jsdoc-method-param-<%= param.name %>"><%= param.name %></code>
           <% } %>
-        <span class="method-brace method-brace-right">)</span>
+        <span class="jsdoc-method-brace jsdoc-method-brace-right">)</span>
         <% if (returns.types.length) { %>
-          <span class="method-returns">
+          <span class="jsdoc-method-returns">
             <% for (const type of returns.types) { %>
-              <span class="method-returns-type method-returns-type-<%= type.toLowerCase() %>"><%= type %></span>
+              <span class="jsdoc-method-returns-type jsdoc-method-returns-type-<%= type.toLowerCase() %>"><%= type %></span>
             <% } %>
           </span>
         <% } %>
@@ -56,30 +56,30 @@ export default {
   `),
 
   returns: template(`
-    <div class="returns">
-      <span class="returns-types">
+    <div class="jsdoc-returns">
+      <span class="jsdoc-returns-types">
         <% for (const type of types) { %>
-          <span class="returns-type returns-type-<%= type.toLowerCase() %>"><%= type %></span>
+          <span class="jsdoc-returns-type jsdoc-returns-type-<%= type.toLowerCase() %>"><%= type %></span>
         <% } %>
       </span>
       <% if (description) { %>
-        <span class="returns-description"><%= description %></span>
+        <span class="jsdoc-returns-description"><%= description %></span>
       <% } %>
     </div>
   `),
 
   property: template(`
-    <div class="property">
+    <div class="jsdoc-property">
       <% if (types.length) { %>
-        <span class="property-types">
+        <span class="jsdoc-property-types">
           <% for (const type of types) { %>
-            <code class="property-type property-type-<%= type.toLowerCase() %>"><%= type %></code>
+            <code class="jsdoc-property-type jsdoc-property-type-<%= type.toLowerCase() %>"><%= type %></code>
           <% } %>
         </span>
       <% } %>
-      <code class="property-name"><%= name %></code>
+      <code class="jsdoc-property-name"><%= name %></code>
       <% if (description) { %>
-        <span class="property-description"><%= description %></span>
+        <span class="jsdoc-property-description"><%= description %></span>
       <% } %>
     </div>
   `),
