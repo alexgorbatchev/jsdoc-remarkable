@@ -33,83 +33,71 @@ describe('jsdoc-remarkable', () => {
     describe('single line', () => {
       it('@param paramName {type}', () =>
         expect(actual('@param paramName {type}')).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName</code>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName</code>
+          </div>
         `))
       );
 
       it('@param paramName {type} here goes description', () =>
         expect(actual('@param paramName {type} here goes description')).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName</code>
-              <span class="param-description">here goes description</span>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName</code>
+            <span class="param-description">here goes description</span>
+          </div>
         `))
       );
 
       it('@param paramName {type} - here goes description', () =>
         expect(actual('@param paramName {type} - here goes description')).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName</code>
-              <span class="param-description">here goes description</span>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName</code>
+            <span class="param-description">here goes description</span>
+          </div>
         `))
       );
 
       it('@param {type} paramName', () =>
         expect(actual('@param {type} paramName')).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName</code>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName</code>
+          </div>
         `))
       );
 
       it('@param {type} paramName here goes description', () =>
         expect(actual('@param {type} paramName here goes description')).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName</code>
-              <span class="param-description">here goes description</span>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName</code>
+            <span class="param-description">here goes description</span>
+          </div>
         `))
       );
 
       it('@param {type} paramName - here goes description', () =>
         expect(actual('@param {type} paramName - here goes description')).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName</code>
-              <span class="param-description">here goes description</span>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName</code>
+            <span class="param-description">here goes description</span>
+          </div>
         `))
       );
     });
@@ -120,21 +108,19 @@ describe('jsdoc-remarkable', () => {
           @param {type} paramName1 - here goes description
           @param {type} paramName2
         `)).to.equal(expected(`
-          <p>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName1</code>
-              <span class="param-description">here goes description</span>
-            </div>
-            <div class="param param-arg">
-              <span class="param-types">
-                <code class="param-type param-type-type">type</code>
-              </span>
-              <code class="param-name">paramName2</code>
-            </div>
-          </p>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName1</code>
+            <span class="param-description">here goes description</span>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-type">type</code>
+            </span>
+            <code class="param-name">paramName2</code>
+          </div>
         `))
       );
     })
@@ -146,17 +132,13 @@ describe('jsdoc-remarkable', () => {
         expect(actual(`
           @method methodName
         `)).to.equal(expected(`
-          <p>
-            <div class="method">
-              <div class="method-signature">
-                <span class="method-name">methodName</span>
-                <span class="method-params">
-                  <span class="method-brace method-brace-left">(</span>
-                  <span class="method-brace method-brace-right">)</span>
-                </span>
-              </div>
-            </div>
-          </p>
+          <div class="method">
+            <span class="method-name">methodName</span>
+            <span class="method-params">
+              <span class="method-brace method-brace-left">(</span>
+              <span class="method-brace method-brace-right">)</span>
+            </span>
+          </div>
         `))
       );
     });
@@ -165,65 +147,93 @@ describe('jsdoc-remarkable', () => {
       it('@method methodName(): Boolean', () =>
         expect(actual(`
           @method methodName
-          @returns {Boolean} This value is returned.
+          @returns {Type1|Type2} This value is returned.
         `)).to.equal(expected(`
-          <p>
-            <div class="method">
-              <div class="method-signature">
-                <span class="method-name">methodName</span>
-                <span class="method-params">
-                  <span class="method-brace method-brace-left">(</span>
-                  <span class="method-brace method-brace-right">)</span>
-                  <span class="method-returns">
-                    <span class="method-returns-type method-returns-type-boolean">Boolean</span>
-                  </span>
-                </span>
-              </div>
-              <div class="method-returns">
-                <span class="method-returns">
-                  <span class="method-returns-type method-returns-type-boolean">Boolean</span>
-                </span>
-                <span class="method-returns-description">This value is returned.</span>
-              </div>
-            </div>
-          </p>
+          <div class="method">
+            <span class="method-name">methodName</span>
+            <span class="method-params">
+              <span class="method-brace method-brace-left">(</span>
+              <span class="method-brace method-brace-right">)</span>
+              <span class="method-returns">
+                <span class="method-returns-type method-returns-type-type1">Type1</span>
+                <span class="method-returns-type method-returns-type-type2">Type2</span>
+              </span>
+            </span>
+          </div>
+          <div class="returns">
+            <span class="returns-types">
+              <span class="returns-type returns-type-type1">Type1</span>
+              <span class="returns-type returns-type-type2">Type2</span>
+            </span>
+            <span class="returns-description">This value is returned.</span>
+          </div>
         `))
       );
     });
 
     describe('with params', () => {
-      it('@method methodName(p1, p2)', () =>
+      it('@method methodName(p1, p2) with description', () =>
         expect(actual(`
           @method methodName
           @param p1 {Boolean}
           @param p2 {Boolean}
+
+          This is a description.
         `)).to.equal(expected(`
-          <p>
+          <div class="method">
+            <span class="method-name">methodName</span>
+            <span class="method-params">
+              <span class="method-brace method-brace-left">(</span>
+              <code class="method-param method-param-p1">p1</code>
+              <code class="method-param method-param-p2">p2</code>
+              <span class="method-brace method-brace-right">)</span>
+            </span>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p1</code>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p2</code>
+          </div>
+          <p>This is a description.</p>
+        `))
+      );
+
+      it('@method methodName(p1, p2) inside a header', () =>
+        expect(actual(`
+          ## @method methodName
+          @param p1 {Boolean}
+          @param p2 {Boolean}
+        `)).to.equal(expected(`
+          <h2>
             <div class="method">
-              <div class="method-signature">
-                <span class="method-name">methodName</span>
-                <span class="method-params">
-                  <span class="method-brace method-brace-left">(</span>
-                  <code class="method-param method-param-p1">p1</code>
-                  <code class="method-param method-param-p2">p2</code>
-                  <span class="method-brace method-brace-right">)</span>
-                </span>
-              </div>
-              <div class="method-params">
-                <div class="param param-arg">
-                  <span class="param-types">
-                    <code class="param-type param-type-boolean">Boolean</code>
-                  </span>
-                  <code class="param-name">p1</code>
-                </div>
-                <div class="param param-arg">
-                  <span class="param-types">
-                    <code class="param-type param-type-boolean">Boolean</code>
-                  </span>
-                  <code class="param-name">p2</code>
-                </div>
-              </div>
-            </div></p>
+              <span class="method-name">methodName</span>
+              <span class="method-params">
+                <span class="method-brace method-brace-left">(</span>
+                <code class="method-param method-param-p1">p1</code>
+                <code class="method-param method-param-p2">p2</code>
+                <span class="method-brace method-brace-right">)</span>
+              </span>
+            </div>
+          </h2>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p1</code>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p2</code>
+          </div>
         `))
       );
     });
@@ -235,13 +245,9 @@ describe('jsdoc-remarkable', () => {
         expect(actual(`
           @event eventName
         `)).to.equal(expected(`
-          <p>
-            <div class="event">
-              <div class="event-signature">
-                <span class="event-name">eventName</span>
-              </div>
-            </div>
-          </p>
+          <div class="event">
+            <span class="event-name">eventName</span>
+          </div>
         `))
       );
     });
@@ -253,32 +259,27 @@ describe('jsdoc-remarkable', () => {
           @param p1 {Boolean}
           @param p2 {Boolean}
         `)).to.equal(expected(`
-          <p>
-            <div class="event">
-              <div class="event-signature">
-                <span class="event-name">eventName</span>
-                <span class="event-params">
-                  <span class="event-brace event-brace-left">(</span>
-                  <code class="event-param event-param-p1">p1</code>
-                  <code class="event-param event-param-p2">p2</code>
-                  <span class="event-brace event-brace-right">)</span>
-                </span>
-              </div>
-              <div class="event-params">
-                <div class="param param-arg">
-                  <span class="param-types">
-                    <code class="param-type param-type-boolean">Boolean</code>
-                  </span>
-                  <code class="param-name">p1</code>
-                </div>
-                <div class="param param-arg">
-                  <span class="param-types">
-                  <code class="param-type param-type-boolean">Boolean</code>
-                  </span>
-                  <code class="param-name">p2</code>
-                </div>
-              </div>
-            </div></p>
+          <div class="event">
+            <span class="event-name">eventName</span>
+            <span class="event-params">
+              <span class="event-brace event-brace-left">(</span>
+              <code class="event-param event-param-p1">p1</code>
+              <code class="event-param event-param-p2">p2</code>
+              <span class="event-brace event-brace-right">)</span>
+            </span>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p1</code>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+            <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p2</code>
+          </div>
         `))
       );
     });
@@ -290,13 +291,9 @@ describe('jsdoc-remarkable', () => {
         expect(actual(`
           @action actionName
         `)).to.equal(expected(`
-          <p>
-            <div class="action">
-              <div class="action-signature">
-                <span class="action-name">actionName</span>
-              </div>
-            </div>
-          </p>
+          <div class="action">
+            <span class="action-name">actionName</span>
+          </div>
         `))
       );
     });
@@ -308,32 +305,27 @@ describe('jsdoc-remarkable', () => {
           @param p1 {Boolean}
           @param p2 {Boolean}
         `)).to.equal(expected(`
-          <p>
-            <div class="action">
-              <div class="action-signature">
-                <span class="action-name">actionName</span>
-                <span class="action-params">
-                  <span class="action-brace action-brace-left">(</span>
-                  <code class="action-param action-param-p1">p1</code>
-                  <code class="action-param action-param-p2">p2</code>
-                  <span class="action-brace action-brace-right">)</span>
-                </span>
-              </div>
-              <div class="action-params">
-                <div class="param param-arg">
-                  <span class="param-types">
-                    <code class="param-type param-type-boolean">Boolean</code>
-                  </span>
-                  <code class="param-name">p1</code>
-                </div>
-                <div class="param param-arg">
-                  <span class="param-types">
-                  <code class="param-type param-type-boolean">Boolean</code>
-                  </span>
-                  <code class="param-name">p2</code>
-                </div>
-              </div>
-            </div></p>
+          <div class="action">
+            <span class="action-name">actionName</span>
+            <span class="action-params">
+              <span class="action-brace action-brace-left">(</span>
+              <code class="action-param action-param-p1">p1</code>
+              <code class="action-param action-param-p2">p2</code>
+              <span class="action-brace action-brace-right">)</span>
+            </span>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+              <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p1</code>
+          </div>
+          <div class="param param-arg">
+            <span class="param-types">
+            <code class="param-type param-type-boolean">Boolean</code>
+            </span>
+            <code class="param-name">p2</code>
+          </div>
         `))
       );
     });
@@ -344,14 +336,12 @@ describe('jsdoc-remarkable', () => {
       expect(actual(`
         @property propertyName {Boolean}
       `)).to.equal(expected(`
-        <p>
-          <div class="property">
-            <span class="property-types">
-              <code class="property-type property-type-boolean">Boolean</code>
-            </span>
-            <code class="property-name">propertyName</code>
-          </div>
-        </p>
+        <div class="property">
+          <span class="property-types">
+            <code class="property-type property-type-boolean">Boolean</code>
+          </span>
+          <code class="property-name">propertyName</code>
+        </div>
       `))
     );
 
@@ -359,15 +349,13 @@ describe('jsdoc-remarkable', () => {
       expect(actual(`
         @property propertyName {Boolean} - This is a description.
       `)).to.equal(expected(`
-        <p>
-          <div class="property">
-            <span class="property-types">
-              <code class="property-type property-type-boolean">Boolean</code>
-            </span>
-            <code class="property-name">propertyName</code>
-            <span class="property-description">This is a description.</span>
-          </div>
-        </p>
+        <div class="property">
+          <span class="property-types">
+            <code class="property-type property-type-boolean">Boolean</code>
+          </span>
+          <code class="property-name">propertyName</code>
+          <span class="property-description">This is a description.</span>
+        </div>
       `))
     );
 
@@ -375,15 +363,13 @@ describe('jsdoc-remarkable', () => {
       expect(actual(`
         @property propertyName {Boolean} This is a description.
       `)).to.equal(expected(`
-        <p>
-          <div class="property">
-            <span class="property-types">
-              <code class="property-type property-type-boolean">Boolean</code>
-            </span>
-            <code class="property-name">propertyName</code>
-            <span class="property-description">This is a description.</span>
-          </div>
-        </p>
+        <div class="property">
+          <span class="property-types">
+            <code class="property-type property-type-boolean">Boolean</code>
+          </span>
+          <code class="property-name">propertyName</code>
+          <span class="property-description">This is a description.</span>
+        </div>
       `))
     );
 
@@ -391,15 +377,13 @@ describe('jsdoc-remarkable', () => {
       expect(actual(`
         @property {Boolean} propertyName - This is a description.
       `)).to.equal(expected(`
-        <p>
-          <div class="property">
-            <span class="property-types">
-              <code class="property-type property-type-boolean">Boolean</code>
-            </span>
-            <code class="property-name">propertyName</code>
-            <span class="property-description">This is a description.</span>
-          </div>
-        </p>
+        <div class="property">
+          <span class="property-types">
+            <code class="property-type property-type-boolean">Boolean</code>
+          </span>
+          <code class="property-name">propertyName</code>
+          <span class="property-description">This is a description.</span>
+        </div>
       `))
     );
 
@@ -407,15 +391,13 @@ describe('jsdoc-remarkable', () => {
       expect(actual(`
         @property {Boolean} propertyName This is a description.
       `)).to.equal(expected(`
-        <p>
-          <div class="property">
-            <span class="property-types">
-              <code class="property-type property-type-boolean">Boolean</code>
-            </span>
-            <code class="property-name">propertyName</code>
-            <span class="property-description">This is a description.</span>
-          </div>
-        </p>
+        <div class="property">
+          <span class="property-types">
+            <code class="property-type property-type-boolean">Boolean</code>
+          </span>
+          <code class="property-name">propertyName</code>
+          <span class="property-description">This is a description.</span>
+        </div>
       `))
     );
   });

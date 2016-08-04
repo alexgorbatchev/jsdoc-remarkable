@@ -42,8 +42,7 @@ function parse(state, silent, opts) {
       tagName,
       context: context || {},
       type: 'jsdoc',
-      block: false,
-      level: state.level
+      level: state.level,
     });
   }
 
@@ -67,15 +66,37 @@ function render(tokens, tokenIndex, options, env, _this, opts) {
   }
 
   const localContext = merge({}, true, context, { templates, merge });
-  const html = template(localContext).replace(/\s+/g, ' ');
 
-  return html;
+  try {
+    return template(localContext).replace(/\s+/g, ' ');
+  } catch (err) {
+    throw new Error(`Template error (${tagName}): ${err.message}`);
+  }
 }
 
 export default function jsdocRemarkable(templates = defaultTemplates) {
   return markdown => {
     const opts = { markdown, templates };
-    markdown.inline.ruler.push('jsdoc', (...args) => parse(...args, opts));
+    const firstRule = markdown.inline.ruler.__rules__[0].name;
+    const { paragraph_open, paragraph_close } = markdown.renderer.rules;
+
+    markdown.inline.ruler.push('jsdoc', (...args) => parse(...args, opts), { alt: [ 'paragraph' ] });
     markdown.renderer.rules.jsdoc = (...args) => render(...args, opts);
+
+    markdown.renderer.rules.paragraph_open = function (tokens, index) {
+      let hasJSDocTokens = false;
+
+      for (let i = index + 1; i < tokens.length; i++) {
+        const children = tokens[i].children || [];
+        hasJSDocTokens = hasJSDocTokens || children.find(token => token.type === 'jsdoc');
+
+        if (hasJSDocTokens && tokens[i].type === 'paragraph_close') {
+          tokens[i].tight = true;
+          break;
+        }
+      }
+
+      return hasJSDocTokens ? '' : paragraph_open(...arguments);
+    }
   }
 }

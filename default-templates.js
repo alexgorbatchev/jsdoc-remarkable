@@ -2,24 +2,15 @@ import template from 'lodash.template';
 
 const namedThingWithParams = name => `
   <div class="${name}">
-    <div class="${name}-signature">
-      <span class="${name}-name"><%= name %></span>
-      <% if (params.length) { %>
-        <span class="${name}-params">
-          <span class="${name}-brace ${name}-brace-left">(</span>
-          <% for (const param of params) { %>
-            <code class="${name}-param ${name}-param-<%= param.name %>"><%= param.name %></code>
-          <% } %>
-          <span class="${name}-brace ${name}-brace-right">)</span>
-        </span>
-      <% } %>
-    </div>
+    <span class="${name}-name"><%= name %></span>
     <% if (params.length) { %>
-      <div class="${name}-params">
+      <span class="${name}-params">
+        <span class="${name}-brace ${name}-brace-left">(</span>
         <% for (const param of params) { %>
-          <%= templates.param(param) %>
+          <code class="${name}-param ${name}-param-<%= param.name %>"><%= param.name %></code>
         <% } %>
-      </div>
+        <span class="${name}-brace ${name}-brace-right">)</span>
+      </span>
     <% } %>
   </div>
 `;
@@ -46,41 +37,33 @@ export default {
 
   method: template(`
     <div class="method">
-      <div class="method-signature">
-        <span class="method-name"><%= name %></span>
-        <span class="method-params">
-          <span class="method-brace method-brace-left">(</span>
-            <% for (const param of params) { %>
-              <code class="method-param method-param-<%= param.name %>"><%= param.name %></code>
-            <% } %>
-          <span class="method-brace method-brace-right">)</span>
-          <% if (returns.types.length) { %>
-            <span class="method-returns">
-              <% for (const type of returns.types) { %>
-                <span class="method-returns-type method-returns-type-boolean"><%= type %></span>
-              <% } %>
-            </span>
-          <% } %>
-        </span>
-      </div>
-      <% if (params.length) { %>
-        <div class="method-params">
+      <span class="method-name"><%= name %></span>
+      <span class="method-params">
+        <span class="method-brace method-brace-left">(</span>
           <% for (const param of params) { %>
-            <%= templates.param(param) %>
+            <code class="method-param method-param-<%= param.name %>"><%= param.name %></code>
           <% } %>
-        </div>
-      <% } %>
-      <% if (returns.types.length) { %>
-        <div class="method-returns">
+        <span class="method-brace method-brace-right">)</span>
+        <% if (returns.types.length) { %>
           <span class="method-returns">
             <% for (const type of returns.types) { %>
-              <span class="method-returns-type method-returns-type-boolean"><%= type %></span>
+              <span class="method-returns-type method-returns-type-<%= type.toLowerCase() %>"><%= type %></span>
             <% } %>
           </span>
-          <% if (returns.description) { %>
-            <span class="method-returns-description"><%= returns.description %></span>
-          <% } %>
-        </div>
+        <% } %>
+      </span>
+    </div>
+  `),
+
+  returns: template(`
+    <div class="returns">
+      <span class="returns-types">
+        <% for (const type of types) { %>
+          <span class="returns-type returns-type-<%= type.toLowerCase() %>"><%= type %></span>
+        <% } %>
+      </span>
+      <% if (description) { %>
+        <span class="returns-description"><%= description %></span>
       <% } %>
     </div>
   `),

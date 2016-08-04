@@ -58,7 +58,6 @@ export default {
 
       if (globalContext.paramsContext) {
         globalContext.paramsContext.push(context);
-        return { skip: true };
       }
 
       return context;
@@ -95,19 +94,19 @@ export default {
   },
 
   returns(value, globalContext, { templates, markdown }) {
-    const { types, description } = findMatch(value, RETURNS_REGEX_LIST) || {};
+    let { types, description } = findMatch(value, RETURNS_REGEX_LIST) || {};
 
     if (types) {
       const { returnsContext } = globalContext;
 
-      if (returnsContext) {
-        returnsContext.types.push(...types.split(/\|/g));
-        returnsContext.description = stripWrappingParagraph(markdown.render(description));
-      } else {
+      if (!returnsContext) {
         throw new Error('@return needs to be in the context of a @method.');
       }
 
-      return { skip: true };
+      types = types.split(/\|/g);
+      returnsContext.types.push(...types);
+      returnsContext.description = stripWrappingParagraph(markdown.render(description));
+      return { types, description };
     }
   },
 
