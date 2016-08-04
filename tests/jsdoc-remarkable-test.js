@@ -284,6 +284,61 @@ describe('jsdoc-remarkable', () => {
     });
   });
 
+  describe('@action', () => {
+    describe('by itself', () => {
+      it('@action actionName', () =>
+        expect(actual(`
+          @action actionName
+        `)).to.equal(expected(`
+          <p>
+            <div class="action">
+              <div class="action-signature">
+                <span class="action-name">actionName</span>
+              </div>
+            </div>
+          </p>
+        `))
+      );
+    });
+
+    describe('with params', () => {
+      it('@action actionName(p1, p2)', () =>
+        expect(actual(`
+          @action actionName
+          @param p1 {Boolean}
+          @param p2 {Boolean}
+        `)).to.equal(expected(`
+          <p>
+            <div class="action">
+              <div class="action-signature">
+                <span class="action-name">actionName</span>
+                <span class="action-params">
+                  <span class="action-brace action-brace-left">(</span>
+                  <code class="action-param action-param-p1">p1</code>
+                  <code class="action-param action-param-p2">p2</code>
+                  <span class="action-brace action-brace-right">)</span>
+                </span>
+              </div>
+              <div class="action-params">
+                <div class="param param-arg">
+                  <span class="param-types">
+                    <code class="param-type param-type-boolean">Boolean</code>
+                  </span>
+                  <code class="param-name">p1</code>
+                </div>
+                <div class="param param-arg">
+                  <span class="param-types">
+                  <code class="param-type param-type-boolean">Boolean</code>
+                  </span>
+                  <code class="param-name">p2</code>
+                </div>
+              </div>
+            </div></p>
+        `))
+      );
+    });
+  });
+
   describe('@property', () => {
     it('@property propertyName {Boolean}', () =>
       expect(actual(`

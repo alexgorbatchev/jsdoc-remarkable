@@ -1,6 +1,33 @@
 import template from 'lodash.template';
 
+const namedThingWithParams = name => `
+  <div class="${name}">
+    <div class="${name}-signature">
+      <span class="${name}-name"><%= name %></span>
+      <% if (params.length) { %>
+        <span class="${name}-params">
+          <span class="${name}-brace ${name}-brace-left">(</span>
+          <% for (const param of params) { %>
+            <code class="${name}-param ${name}-param-<%= param.name %>"><%= param.name %></code>
+          <% } %>
+          <span class="${name}-brace ${name}-brace-right">)</span>
+        </span>
+      <% } %>
+    </div>
+    <% if (params.length) { %>
+      <div class="${name}-params">
+        <% for (const param of params) { %>
+          <%= templates.param(param) %>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+`;
+
 export default {
+  event: template(namedThingWithParams('event')),
+  action: template(namedThingWithParams('action')),
+
   param: template(`
     <div class="param param-arg">
       <% if (types.length) { %>
@@ -52,30 +79,6 @@ export default {
           </span>
           <% if (returns.description) { %>
             <span class="method-returns-description"><%= returns.description %></span>
-          <% } %>
-        </div>
-      <% } %>
-    </div>
-  `),
-
-  event: template(`
-    <div class="event">
-      <div class="event-signature">
-        <span class="event-name"><%= name %></span>
-        <% if (params.length) { %>
-          <span class="event-params">
-            <span class="event-brace event-brace-left">(</span>
-            <% for (const param of params) { %>
-              <code class="event-param event-param-<%= param.name %>"><%= param.name %></code>
-            <% } %>
-            <span class="event-brace event-brace-right">)</span>
-          </span>
-        <% } %>
-      </div>
-      <% if (params.length) { %>
-        <div class="event-params">
-          <% for (const param of params) { %>
-            <%= templates.param(param) %>
           <% } %>
         </div>
       <% } %>

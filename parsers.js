@@ -85,6 +85,15 @@ export default {
     return context;
   },
 
+  action(value, globalContext, { templates, markdown }) {
+    const params = [];
+    const context = { name: value, params };
+
+    globalContext.paramsContext = params;
+
+    return context;
+  },
+
   returns(value, globalContext, { templates, markdown }) {
     const { types, description } = findMatch(value, RETURNS_REGEX_LIST) || {};
 

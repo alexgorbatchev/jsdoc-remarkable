@@ -59,6 +59,15 @@ This is method description.
 This is event description.
 ```
 
+### @action
+
+```
+@action actionName
+@param paramName {Type1|Type2} - Param description.
+
+This is action description.
+```
+
 ## License
 
 ISC
