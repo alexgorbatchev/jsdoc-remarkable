@@ -25,6 +25,10 @@ describe('jsdoc-remarkable', () => {
       ;
   }
 
+  it('throws when unknown tag is encountered', () =>
+    expect(() => actual(`@foo actionName`)).to.throw(/Unknown tag @foo/)
+  );
+
   describe('@param', () => {
     describe('single line', () => {
       it('@param paramName {type}', () =>

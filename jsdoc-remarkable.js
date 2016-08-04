@@ -61,6 +61,11 @@ function render(tokens, tokenIndex, options, env, _this, opts) {
 
   const { templates } = opts;
   const template = templates[tagName];
+
+  if (!template) {
+    throw new Error(`Unknown tag @${tagName}`);
+  }
+
   const localContext = merge({}, true, context, { templates, merge });
   const html = template(localContext).replace(/\s+/g, ' ');
 
