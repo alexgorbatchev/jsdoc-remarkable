@@ -92,8 +92,10 @@ export default function jsdocRemarkable(templates = defaultTemplates) {
         const children = tokens[i].children || [];
         hasJSDocTokens = hasJSDocTokens || children.find(token => token.type === 'jsdoc');
 
-        if (hasJSDocTokens && tokens[i].type === 'paragraph_close') {
-          tokens[i].tight = true;
+        if (tokens[i].type === 'paragraph_close') {
+          if (hasJSDocTokens) {
+            tokens[i].tight = true;
+          }
           break;
         }
       }
