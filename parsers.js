@@ -104,8 +104,11 @@ export default {
       }
 
       types = types.split(/\|/g);
+      description = stripWrappingParagraph(markdown.render(description));
+
       returnsContext.types.push(...types);
-      returnsContext.description = stripWrappingParagraph(markdown.render(description));
+      returnsContext.description = description;
+
       return { types, description };
     }
   },
