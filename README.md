@@ -32,14 +32,14 @@ The following constructs are supported:
 ### @param
 
 ```
-@param paramName {Type1|Type2} - Param description.
+@param {(Type1|Type2)} paramName - Param description.
 ```
 
 ### @method
 
 ```
 @method methodName
-@param paramName {Type1|Type2} - Param description.
+@param {(Type1|Type2)} paramName - Param description.
 
 This is method description.
 ```
@@ -47,14 +47,14 @@ This is method description.
 ### @property
 
 ```
-@property propName {Type1|Type2} - Property description.
+@property {(Type1|Type2)} propName - Property description.
 ```
 
 ### @event
 
 ```
 @event eventName
-@param paramName {Type1|Type2} - Param description.
+@param {(Type1|Type2)} paramName - Param description.
 
 This is event description.
 ```
@@ -63,7 +63,7 @@ This is event description.
 
 ```
 @action actionName
-@param paramName {Type1|Type2} - Param description.
+@param {(Type1|Type2)} paramName - Param description.
 
 This is action description.
 ```

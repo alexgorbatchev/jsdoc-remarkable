@@ -1,7 +1,7 @@
-import XRegExp from 'xregexp';
 import merge from 'lodash.merge';
 import defaultTemplates from './default-templates';
-import parsers from './parsers';
+import parseJSDocLine from 'jsdoc-line-parser';
+import tagParsers from './tag-parsers';
 
 function parse(state, silent, opts) {
   if (state.src[state.pos] !== '@') {
@@ -26,27 +26,25 @@ function parse(state, silent, opts) {
   }
 
   const tagString = state.src.substr(state.pos, pos - state.pos);
-  const match = tagString.match(/^\@(\w+)\s*([\s\S]*)$/);
-  const [ tagName, tagValue ] = (match || []).slice(1);
+  const parsedTag = parseJSDocLine(tagString);
 
-  if (!tagName) {
+  if (!parsedTag) {
     return false;
   }
 
   if (!silent) {
-    const parser = parsers[tagName];
-    const context = parser ? parser(tagValue, state.env.jsdoc, opts) : {};
+    const parseTag = tagParsers[parsedTag.tag];
+    const context = parseTag ? parseTag(parsedTag, state.env.jsdoc, opts) : {};
 
     state.push({
-      tagValue,
-      tagName,
-      context: context || {},
       type: 'jsdoc',
+      tagName: parsedTag.tag,
+      context: context || {},
       level: state.level,
     });
   }
 
-  state.pos += match[0].length;
+  state.pos = pos;
 
   return true;
 }
