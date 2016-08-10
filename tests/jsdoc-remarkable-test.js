@@ -65,6 +65,19 @@ describe('jsdoc-remarkable', () => {
           </div>
         `))
       );
+
+      it('@param {type} [paramName=FooBar] - here goes description', () =>
+        expect(actual('@param {type} [paramName=FooBar] - here goes description')).to.equal(expected(`
+          <div class="jsdoc-param jsdoc-param-arg">
+            <span class="jsdoc-param-types">
+              <code class="jsdoc-param-type jsdoc-param-type-type">type</code>
+            </span>
+            <code class="jsdoc-param-name">paramName</code>
+            <code class="jsdoc-param-default-value">FooBar</code>
+            <span class="jsdoc-param-description">here goes description</span>
+          </div>
+        `))
+      );
     });
 
     describe('multiple params', () => {

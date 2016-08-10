@@ -29,6 +29,9 @@ export default {
         </span>
       <% } %>
       <code class="jsdoc-param-name"><%= name %></code>
+      <% if (typeof defaultValue !== 'undefined') { %>
+        <code class="jsdoc-param-default-value"><%= defaultValue %></code>
+      <% } %>
       <% if (description) { %>
         <span class="jsdoc-param-description"><%= description %></span>
       <% } %>
