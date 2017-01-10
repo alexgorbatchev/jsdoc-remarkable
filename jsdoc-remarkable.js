@@ -3,8 +3,26 @@ import defaultTemplates from './default-templates';
 import parseJSDocLine from 'jsdoc-line-parser';
 import tagParsers from './tag-parsers';
 
+const EMPTY_PREFIX = /^\s*$/;
+
+function getLinePrefix(string, pos) {
+  let accumulator = '';
+
+  pos--;
+
+  while (pos >= 0 && string[pos] !== '\n') {
+    accumulator = string[pos--] + accumulator;
+  }
+
+  return accumulator;
+}
+
 function parse(state, silent, opts) {
   if (state.src[state.pos] !== '@') {
+    return false;
+  }
+
+  if (!EMPTY_PREFIX.test(getLinePrefix(state.src, state.pos))) {
     return false;
   }
 

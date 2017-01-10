@@ -25,9 +25,19 @@ describe('jsdoc-remarkable', () => {
       ;
   }
 
-  it('throws when unknown tag is encountered', () =>
-    expect(() => actual(`@foo actionName`)).to.throw(/Unknown tag @foo/)
-  );
+  describe('non-tags', () => {
+    it('can handle email addresses in plain text', () =>
+      expect(actual('This is just [test@](mailto:test@test.com).')).to.equal(expected(`
+        <p>This is just <a href="mailto:test@test.com">test@</a>.</p>
+      `))
+    );
+  });
+
+  describe('errors', () => {
+    it('throws when unknown tag is encountered', () =>
+      expect(() => actual(`@foo actionName`)).to.throw(/Unknown tag @foo/)
+    );
+  });
 
   describe('@param', () => {
     describe('single line', () => {
